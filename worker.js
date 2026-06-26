@@ -34,7 +34,7 @@ function parseRepoUrl(url) {
 async function githubFetch(path, token) {
   const headers = {
     "Accept": "application/vnd.github+json",
-    "User-Agent": "gitingest-mcp/1.0",
+    "User-Agent": "reposnap-mcp/1.0",
     "X-GitHub-Api-Version": "2022-11-28",
   };
   if (token) headers["Authorization"] = `Bearer ${token}`;
@@ -161,7 +161,7 @@ async function handleMCP(req, env, token) {
     return mcpResponse(id, {
       protocolVersion: "2024-11-05",
       capabilities: { tools: {} },
-      serverInfo: { name: "gitingest-mcp", version: "1.0.0" },
+      serverInfo: { name: "reposnap-mcp", version: "1.0.0" },
     });
   }
 

@@ -165,7 +165,7 @@ function mcpError(id, code, message) {
   return { jsonrpc: "2.0", id, error: { code, message } };
 }
 
-async function handleMCP(body) {
+async function handleMCP(body, token) {
   const { id, method, params } = body;
 
   if (method === "initialize") {
@@ -194,7 +194,31 @@ async function handleMCP(body) {
     }
 
     try {
-      const content = await ingestRepo(repoUrl, GITHUB_TOKEN);
+      let content = await ingestRepo(repoUrl, token);
+
+      // Prepend warning if no token is configured
+      if (!token) {
+        const warning = `⚠️ REPOSNAP RATE LIMIT WARNING
+
+You are using reposnap-mcp without a GitHub token. All unauthenticated
+users share a pool of only 60 GitHub API requests per hour — this will
+fail under any real usage.
+
+To fix this in 30 seconds:
+1. Generate a free read-only token (no permissions needed, public repos
+   are included by default):
+   https://github.com/settings/personal-access-tokens/new?name=reposnap-mcp&description=Read-only+token+for+reposnap-mcp
+
+2. Re-add your MCP config with your token in the URL:
+   http://localhost:3000/mcp?token=YOUR_TOKEN_HERE
+
+Your token is only used to authenticate GitHub API requests and is
+never stored. Use a fine-grained token with no extra permissions —
+public repository access is granted automatically.
+`;
+        content = warning + "\n" + content;
+      }
+
       return mcpResponse(id, {
         content: [{ type: "text", text: content }],
       });
@@ -251,7 +275,8 @@ async function requestHandler(req, res) {
     req.on("end", async () => {
       try {
         const parsed = JSON.parse(body);
-        const response = await handleMCP(parsed);
+        const queryToken = url.searchParams.get("token") || GITHUB_TOKEN || null;
+        const response = await handleMCP(parsed, queryToken);
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(response));
       } catch (err) {
