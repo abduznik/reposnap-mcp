@@ -223,18 +223,6 @@ export default {
       Object.entries(CORS_HEADERS).forEach(([k, v]) => res.headers.set(k, v));
       return res;
     }
-    if (req.method === "GET" && url.pathname === "/manifest") {
-      return Response.json({
-        schema_version: "v1",
-        name_for_human: "Reposnap",
-        name_for_model: "reposnap",
-        description_for_human: "Ingest any public GitHub repository into your AI context.",
-        description_for_model: "Fetches and concatenates source files from a public GitHub repository into a single text blob for LLM context.",
-        logo_url: "https://abduznik.github.io/reposnap-mcp/logo.png",
-        contact_email: "",
-        legal_info_url: "https://github.com/abduznik/reposnap-mcp"
-      }, { headers: CORS_HEADERS });
-    }
     return new Response("Not found", { status: 404 });
   },
 };
