@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  reposnap-mcp:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - PORT=3000
+    restart: unless-stopped
