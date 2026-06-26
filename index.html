@@ -16,7 +16,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         a {
@@ -29,34 +29,49 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
 
         /* Hero Section */
         .hero {
+            padding: 120px 20px 80px;
             text-align: center;
-            padding: 80px 20px;
-            border-bottom: 1px solid #30363d;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.05) 0%, rgba(218, 54, 51, 0.05) 100%);
         }
 
         .hero h1 {
-            font-size: 48px;
-            font-weight: 600;
+            font-size: 56px;
+            font-weight: 700;
             margin-bottom: 16px;
             color: #f0f6fc;
             font-family: "JetBrains Mono", monospace;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #58a6ff 0%, #f0f6fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .tagline {
-            font-size: 18px;
+            font-size: 20px;
             color: #8b949e;
-            margin-bottom: 40px;
-            max-width: 600px;
+            margin-bottom: 12px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero .description {
+            font-size: 15px;
+            color: #6e7681;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
         }
 
         .button-group {
@@ -64,16 +79,17 @@
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .button {
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             border: 1px solid #30363d;
             background-color: transparent;
             color: #58a6ff;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
@@ -84,6 +100,7 @@
             background-color: #1f6feb;
             border-color: #58a6ff;
             color: #fff;
+            transform: translateY(-1px);
         }
 
         .button.primary {
@@ -106,73 +123,124 @@
             background-color: #f85149;
         }
 
-        /* How It Works */
+        .divider {
+            margin: 24px 0;
+            color: #30363d;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .feature {
+            padding: 20px;
+            background-color: rgba(88, 166, 255, 0.05);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .feature:hover {
+            border-color: #58a6ff;
+            background-color: rgba(88, 166, 255, 0.1);
+        }
+
+        .feature h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #f0f6fc;
+        }
+
+        .feature p {
+            font-size: 13px;
+            color: #8b949e;
+        }
+
+        /* Sections */
         .section {
             padding: 80px 20px;
             border-bottom: 1px solid #30363d;
         }
 
         .section h2 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 48px;
-            color: #f0f6fc;
-            text-align: center;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-bottom: 0;
-        }
-
-        .step {
-            text-align: center;
-        }
-
-        .step-number {
             font-size: 32px;
-            font-weight: 600;
-            color: #58a6ff;
-            margin-bottom: 12px;
-            font-family: "JetBrains Mono", monospace;
-        }
-
-        .step h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 32px;
             color: #f0f6fc;
         }
 
-        .step p {
-            font-size: 14px;
+        .section-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .section-text {
+            font-size: 15px;
+            line-height: 1.8;
             color: #8b949e;
         }
 
-        /* Install Section */
-        .install-section {
-            display: flex;
-            flex-direction: column;
+        .section-text p {
+            margin-bottom: 16px;
+        }
+
+        .section-text strong {
+            color: #f0f6fc;
+        }
+
+        /* Setup Options */
+        .setup-options {
+            display: grid;
             gap: 24px;
+        }
+
+        .setup-card {
+            padding: 24px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+        }
+
+        .setup-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 12px;
+        }
+
+        .setup-card p {
+            font-size: 13px;
+            color: #8b949e;
+            margin-bottom: 12px;
         }
 
         .code-block {
             position: relative;
-            background-color: #161b22;
+            background-color: #0d1117;
             border: 1px solid #30363d;
             border-radius: 6px;
             padding: 16px;
             overflow-x: auto;
+            margin-top: 12px;
         }
 
         .code-block code {
             font-family: "JetBrains Mono", monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: #c9d1d9;
             display: block;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .copy-btn {
@@ -184,8 +252,8 @@
             color: #fff;
             border: none;
             border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             font-family: "JetBrains Mono", monospace;
@@ -195,8 +263,30 @@
             background-color: #2ea043;
         }
 
-        .copy-btn.copied {
-            background-color: #238636;
+        /* Use Cases */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .use-case {
+            padding: 16px;
+            background-color: rgba(88, 166, 255, 0.03);
+            border-left: 3px solid #58a6ff;
+            border-radius: 4px;
+        }
+
+        .use-case h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 4px;
+        }
+
+        .use-case p {
+            font-size: 13px;
+            color: #8b949e;
         }
 
         /* Tool Reference */
@@ -213,7 +303,7 @@
         th {
             text-align: left;
             padding: 12px;
-            border-bottom: 1px solid #30363d;
+            border-bottom: 2px solid #30363d;
             font-weight: 600;
             color: #f0f6fc;
             background-color: #0d1117;
@@ -227,19 +317,118 @@
 
         td code {
             font-family: "JetBrains Mono", monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: #79c0ff;
             background-color: #161b22;
-            padding: 2px 6px;
+            padding: 3px 7px;
             border-radius: 3px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #161b22;
+            margin: 10% auto;
+            padding: 32px;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: #8b949e;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #f0f6fc;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #f0f6fc;
+        }
+
+        .modal p {
+            color: #8b949e;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .modal-code {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .modal-code code {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
+            color: #c9d1d9;
+            display: block;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .modal-copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 8px 16px;
+            background-color: #238636;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-copy-btn:hover {
+            background-color: #2ea043;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 48px 20px;
             color: #6e7681;
-            font-size: 14px;
+            font-size: 13px;
+        }
+
+        .footer p {
+            margin-bottom: 12px;
         }
 
         .footer a {
@@ -249,15 +438,16 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .hero .tagline {
-                font-size: 16px;
+                font-size: 18px;
             }
 
-            .section h2 {
-                font-size: 24px;
+            .section-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
             }
 
             .button-group {
@@ -268,61 +458,67 @@
                 width: 100%;
             }
 
-            .steps {
+            .features {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* GitHub Pages note (hidden) */
-        /* Note for GitHub Pages deployment:
-           This site requires a .nojekyll file in the root for proper deployment.
-           GitHub Pages will serve this index.html directly without Jekyll processing.
-        */
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <div class="hero">
-        <h1>reposnap-mcp</h1>
-        <p class="tagline">Ingest any GitHub repo into your AI context. One MCP tool, zero setup.</p>
-        <div class="button-group">
-            <a href="https://github.com/abduznik/reposnap-mcp" class="button primary">View on GitHub</a>
-            <button class="button" onclick="copyMcpConfig()">Copy MCP config</button>
-            <a href="https://github.com/sponsors/abduznik" class="button sponsor">❤️ Sponsor</a>
-        </div>
-    </div>
+        <div class="container">
+            <h1>reposnap-mcp</h1>
+            <p class="tagline">Ingest any GitHub repository directly into your AI.</p>
+            <p class="description">Stop copying and pasting code. Use reposnap-mcp to instantly load entire GitHub repositories into Claude, Cursor, Windsurf, or any AI assistant. Works with Model Context Protocol (MCP).</p>
 
-    <!-- How It Works -->
-    <div class="container">
-        <div class="section">
-            <h2>How it works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Point your MCP client</h3>
-                    <p>Configure Claude, Cursor, Windsurf, or any MCP client to use our endpoint.</p>
+            <div class="button-group">
+                <a href="https://github.com/abduznik/reposnap-mcp" class="button primary">View on GitHub</a>
+                <button class="button" onclick="openConfigModal()">Get Started</button>
+                <a href="https://github.com/sponsors/abduznik" class="button sponsor">❤️ Sponsor</a>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>🚀 No Setup</h3>
+                    <p>Just paste a URL. No auth, no build steps, no friction.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Call ingest_repo</h3>
-                    <p>Pass any public GitHub URL and let the tool do the work.</p>
+                <div class="feature">
+                    <h3>📁 Full Context</h3>
+                    <p>Get the complete file tree and source code in seconds.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get full context</h3>
-                    <p>Receive the complete file tree and source code in your AI's context.</p>
+                <div class="feature">
+                    <h3>🔓 Open Source</h3>
+                    <p>Free forever, MIT licensed, self-hostable.</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Install Section -->
-        <div class="section">
-            <h2>Install</h2>
-            <div class="install-section">
-                <p>Add this to your <code style="font-family: 'JetBrains Mono', monospace; background-color: #161b22; padding: 2px 6px; border-radius: 3px; color: #79c0ff;">claude_desktop_config.json</code> or your MCP client's configuration:</p>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyToClipboard(event)">Copy</button>
-                    <code id="configCode">{
+    <!-- Configuration Modal -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeConfigModal()">&times;</span>
+            <h2>Set up reposnap-mcp</h2>
+            <p>Choose your AI assistant or MCP client below:</p>
+
+            <div class="setup-options">
+                <!-- Claude Desktop -->
+                <div class="setup-card">
+                    <h3>Claude Desktop App</h3>
+                    <p>Add this to your <code style="font-family: 'JetBrains Mono', monospace; background-color: #161b22; padding: 2px 6px; border-radius: 3px; color: #79c0ff;">claude_desktop_config.json</code>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'claudeConfig')">Copy</button>
+                        <code id="claudeConfig">{
   "mcpServers": {
     "reposnap": {
       "type": "url",
@@ -330,6 +526,84 @@
     }
   }
 }</code>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 12px; color: #6e7681;">Then restart Claude Desktop. You'll see "reposnap" in your tool list.</p>
+                </div>
+
+                <!-- Cursor -->
+                <div class="setup-card">
+                    <h3>Cursor</h3>
+                    <p>Add this to your MCP configuration (usually in <code style="font-family: 'JetBrains Mono', monospace; background-color: #161b22; padding: 2px 6px; border-radius: 3px; color: #79c0ff;">.cursor/mcp.json</code>):</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'cursorConfig')">Copy</button>
+                        <code id="cursorConfig">{
+  "mcpServers": {
+    "reposnap": {
+      "type": "url",
+      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp"
+    }
+  }
+}</code>
+                    </div>
+                </div>
+
+                <!-- Generic MCP Client -->
+                <div class="setup-card">
+                    <h3>Generic MCP Client / Windsurf</h3>
+                    <p>Direct endpoint URL:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'endpoint')">Copy</button>
+                        <code id="endpoint">https://reposnap-mcp.bacholate.workers.dev/mcp</code>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 12px; color: #6e7681;">Consult your MCP client's documentation for configuration details.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #30363d; font-size: 13px; color: #8b949e;">
+                <strong style="color: #f0f6fc;">Pro tip:</strong> Once configured, just ask your AI assistant to "ingest the repository at [GitHub URL]" and you're done!
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- How It Works -->
+        <div class="section">
+            <h2>How it works</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p><strong>Point your MCP client</strong> to reposnap-mcp's free endpoint. Configuration takes under a minute — just paste the URL into your AI assistant's settings.</p>
+                    <p><strong>Call the ingest_repo tool</strong> with any public GitHub repository URL. No authentication required, works with private repos you have access to.</p>
+                    <p><strong>Get the full codebase</strong> injected into your AI's context instantly. File tree, all source code, configuration files — everything you need to understand, refactor, or analyze a project.</p>
+                    <p>No manual copy-pasting. No file size limits. Just instant, complete repo context.</p>
+                </div>
+                <div>
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <h4>📚 Learn</h4>
+                            <p>Understand unfamiliar codebases faster with AI-powered exploration.</p>
+                        </div>
+                        <div class="use-case">
+                            <h4>🔧 Refactor</h4>
+                            <p>Ask AI to refactor or modernize code across entire projects.</p>
+                        </div>
+                        <div class="use-case">
+                            <h4>📝 Document</h4>
+                            <p>Generate README, API docs, and inline comments automatically.</p>
+                        </div>
+                        <div class="use-case">
+                            <h4>🔍 Audit</h4>
+                            <p>Have AI review security, performance, and code quality at scale.</p>
+                        </div>
+                        <div class="use-case">
+                            <h4>🐛 Debug</h4>
+                            <p>Get AI help finding and fixing bugs across large codebases.</p>
+                        </div>
+                        <div class="use-case">
+                            <h4>🧪 Test</h4>
+                            <p>Generate tests and improve coverage with AI assistance.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -337,64 +611,85 @@
         <!-- Tool Reference -->
         <div class="section">
             <h2>Tool reference</h2>
+            <p style="color: #8b949e; margin-bottom: 24px; font-size: 15px;">After configuring reposnap-mcp, you'll have access to the <code style="font-family: 'JetBrains Mono', monospace; background-color: #161b22; padding: 2px 6px; border-radius: 3px; color: #79c0ff;">ingest_repo</code> tool in your AI assistant.</p>
             <div class="tool-reference">
                 <table>
                     <thead>
                         <tr>
-                            <th>Tool</th>
-                            <th>Input</th>
-                            <th>Output</th>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>ingest_repo</code></td>
-                            <td><code>repo_url</code> (GitHub URL)</td>
-                            <td>File tree + full source as plain text</td>
+                            <td><code>repo_url</code></td>
+                            <td>string</td>
+                            <td>A public GitHub repository URL (e.g., <code>https://github.com/user/repo</code>)</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div style="margin-top: 24px; padding: 16px; background-color: rgba(88, 166, 255, 0.05); border-left: 3px solid #58a6ff; border-radius: 4px;">
+                <p style="font-size: 13px; color: #8b949e;"><strong style="color: #f0f6fc;">Returns:</strong> Complete file tree and full source code as plain text, ready for AI analysis.</p>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section">
+            <h2>Questions?</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p><strong>Is it free?</strong> Yes, completely. reposnap-mcp is open source (MIT) and the hosted endpoint is free to use.</p>
+                    <p><strong>Do I need an account?</strong> No. No authentication, no rate limiting for reasonable use.</p>
+                    <p><strong>Does it work with private repos?</strong> Yes, as long as you have access to the repository on GitHub.</p>
+                    <p><strong>Can I self-host?</strong> Absolutely. The source code is on GitHub — deploy it yourself using Cloudflare Workers, Docker, or any serverless platform.</p>
+                    <p><strong>What about my data?</strong> reposnap-mcp fetches public code from GitHub on demand. We don't store your data.</p>
+                </div>
+                <div style="padding: 24px; background-color: #161b22; border: 1px solid #30363d; border-radius: 8px;">
+                    <h3 style="font-size: 16px; color: #f0f6fc; margin-bottom: 16px;">Ready to dive in?</h3>
+                    <button class="button primary" style="width: 100%;" onclick="openConfigModal()">Get Started Now</button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p>Built by <a href="https://github.com/abduznik">abduznik</a> • <a href="https://github.com/abduznik/reposnap-mcp">GitHub</a> • Free and open source — MIT</p>
+        <p>Built by <a href="https://github.com/abduznik">abduznik</a></p>
+        <p><a href="https://github.com/abduznik/reposnap-mcp">GitHub</a> • <a href="https://github.com/sponsors/abduznik">Sponsor</a> • MIT Licensed</p>
     </div>
 
     <script>
-        function copyToClipboard(event) {
-            const codeElement = document.getElementById('configCode');
-            const text = codeElement.textContent;
+        function openConfigModal() {
+            document.getElementById('configModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('configModal');
+            if (event.target == modal) {
+                closeConfigModal();
+            }
+        }
+
+        function copyCode(event, elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent.trim();
 
             navigator.clipboard.writeText(text).then(() => {
                 const button = event.target;
                 const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.classList.add('copied');
+                button.textContent = '✓ Copied!';
 
                 setTimeout(() => {
                     button.textContent = originalText;
-                    button.classList.remove('copied');
                 }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
-        }
-
-        function copyMcpConfig() {
-            const configText = `{
-  "mcpServers": {
-    "reposnap": {
-      "type": "url",
-      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp"
-    }
-  }
-}`;
-
-            navigator.clipboard.writeText(configText).then(() => {
-                alert('MCP config copied to clipboard!');
             }).catch(err => {
                 console.error('Failed to copy:', err);
             });
