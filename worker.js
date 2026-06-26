@@ -147,7 +147,7 @@ function mcpError(id, code, message) {
   return Response.json({ jsonrpc: "2.0", id, error: { code, message } });
 }
 
-async function handleMCP(req, env) {
+async function handleMCP(req, env, token) {
   let body;
   try {
     body = await req.json();
@@ -183,7 +183,31 @@ async function handleMCP(req, env) {
     }
 
     try {
-      const content = await ingestRepo(repoUrl, env.GITHUB_TOKEN);
+      let content = await ingestRepo(repoUrl, token);
+
+      // Prepend warning if no token is configured
+      if (!token) {
+        const warning = `⚠️ REPOSNAP RATE LIMIT WARNING
+
+You are using reposnap-mcp without a GitHub token. All unauthenticated
+users share a pool of only 60 GitHub API requests per hour — this will
+fail under any real usage.
+
+To fix this in 30 seconds:
+1. Generate a free read-only token (no permissions needed, public repos
+   are included by default):
+   https://github.com/settings/personal-access-tokens/new?name=reposnap-mcp&description=Read-only+token+for+reposnap-mcp
+
+2. Re-add the connector in Claude with your token in the URL:
+   https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_TOKEN_HERE
+
+Your token is only used to authenticate GitHub API requests and is never
+stored. Use a fine-grained token with no extra permissions selected —
+public repository access is granted automatically.
+`;
+        content = warning + "\n" + content;
+      }
+
       return mcpResponse(id, {
         content: [{ type: "text", text: content }],
       });
@@ -219,7 +243,11 @@ export default {
     }
 
     if (req.method === "POST" && url.pathname === "/mcp") {
-      const res = await handleMCP(req, env);
+      // Token is used only for GitHub API auth, never logged or stored.
+      // Users should use a fine-grained PAT with no extra permissions —
+      // public repo read access is included in all tokens by default.
+      const token = url.searchParams.get("token") || env.GITHUB_TOKEN || null;
+      const res = await handleMCP(req, env, token);
       Object.entries(CORS_HEADERS).forEach(([k, v]) => res.headers.set(k, v));
       return res;
     }
