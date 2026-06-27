@@ -502,15 +502,26 @@
 
     <!-- Configuration Modal -->
     <div id="configModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 600px;">
             <span class="modal-close" onclick="closeConfigModal()">&times;</span>
             <h2>Setup Instructions</h2>
+
+            <p style="font-size: 12px; color: #8b949e; margin-bottom: 20px;">
+                Choose your client below. The basic config uses a shared GitHub token (60 req/hr). Add your own token for 5000 req/hr — generate one free at
+                <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a>
+                (no permissions needed for public repos).
+            </p>
 
             <div class="setup-options">
                 <!-- Claude Desktop -->
                 <div class="setup-card">
-                    <h3>Claude Desktop App</h3>
-                    <p>Add this to <code>claude_desktop_config.json</code>:</p>
+                    <h3>Claude Desktop</h3>
+                    <p>
+                        Config file location:<br>
+                        <span style="color: #6e7681;">macOS: </span><code>~/Library/Application Support/Claude/claude_desktop_config.json</code><br>
+                        <span style="color: #6e7681;">Windows: </span><code>%APPDATA%\Claude\claude_desktop_config.json</code>
+                    </p>
+                    <p style="margin-top: 10px;">Basic (60 req/hr shared):</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(event, 'claudeConfig')">Copy</button>
                         <code id="claudeConfig">{
@@ -522,12 +533,30 @@
   }
 }</code>
                     </div>
+                    <p style="margin-top: 10px;">With your GitHub token (5000 req/hr) — <a href="https://github.com/settings/tokens" target="_blank">get a token</a>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'claudeConfigToken')">Copy</button>
+                        <code id="claudeConfigToken">{
+  "mcpServers": {
+    "reposnap": {
+      "type": "url",
+      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN"
+    }
+  }
+}</code>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 11px; color: #6e7681;">Restart Claude Desktop after saving.</p>
                 </div>
 
                 <!-- Cursor -->
                 <div class="setup-card">
                     <h3>Cursor</h3>
-                    <p>Add this to <code>.cursor/mcp.json</code>:</p>
+                    <p>
+                        Config file location:<br>
+                        <span style="color: #6e7681;">Per-project: </span><code>.cursor/mcp.json</code> in your project root<br>
+                        <span style="color: #6e7681;">Global: </span><code>~/.cursor/mcp.json</code>
+                    </p>
+                    <p style="margin-top: 10px;">Basic (60 req/hr shared):</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(event, 'cursorConfig')">Copy</button>
                         <code id="cursorConfig">{
@@ -539,12 +568,29 @@
   }
 }</code>
                     </div>
+                    <p style="margin-top: 10px;">With your GitHub token (5000 req/hr) — <a href="https://github.com/settings/tokens" target="_blank">get a token</a>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'cursorConfigToken')">Copy</button>
+                        <code id="cursorConfigToken">{
+  "mcpServers": {
+    "reposnap": {
+      "type": "url",
+      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN"
+    }
+  }
+}</code>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 11px; color: #6e7681;">Enable in Cursor: Settings → MCP → confirm reposnap is listed.</p>
                 </div>
 
                 <!-- Windsurf -->
                 <div class="setup-card">
                     <h3>Windsurf</h3>
-                    <p>Add this to <code>~/.codeium/windsurf/mcp_config.json</code>:</p>
+                    <p>
+                        Config file location:<br>
+                        <code>~/.codeium/windsurf/mcp_config.json</code>
+                    </p>
+                    <p style="margin-top: 10px;">Basic (60 req/hr shared):</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(event, 'windsurfConfig')">Copy</button>
                         <code id="windsurfConfig">{
@@ -556,21 +602,55 @@
   }
 }</code>
                     </div>
+                    <p style="margin-top: 10px;">With your GitHub token (5000 req/hr) — <a href="https://github.com/settings/tokens" target="_blank">get a token</a>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'windsurfConfigToken')">Copy</button>
+                        <code id="windsurfConfigToken">{
+  "mcpServers": {
+    "reposnap": {
+      "type": "url",
+      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN"
+    }
+  }
+}</code>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 11px; color: #6e7681;">Restart Windsurf after saving.</p>
                 </div>
 
-                <!-- Generic MCP Client -->
+                <!-- Claude.ai -->
+                <div class="setup-card">
+                    <h3>Claude.ai (browser)</h3>
+                    <p>Go to <strong style="color: #f0f6fc;">Claude.ai → Settings → Connectors</strong> and add a custom connector with this URL:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'claudeaiEndpoint')">Copy</button>
+                        <code id="claudeaiEndpoint">https://reposnap-mcp.bacholate.workers.dev/mcp</code>
+                    </div>
+                    <p style="margin-top: 10px;">With your GitHub token (5000 req/hr) — <a href="https://github.com/settings/tokens" target="_blank">get a token</a>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'claudeaiToken')">Copy</button>
+                        <code id="claudeaiToken">https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN</code>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 11px; color: #6e7681;">Requires a Claude.ai Pro or Team plan for custom connectors.</p>
+                </div>
+
+                <!-- Other -->
                 <div class="setup-card">
                     <h3>Other MCP Clients</h3>
-                    <p>Direct endpoint URL:</p>
+                    <p>Use the endpoint URL directly in your client's MCP configuration:</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(event, 'endpoint')">Copy</button>
                         <code id="endpoint">https://reposnap-mcp.bacholate.workers.dev/mcp</code>
+                    </div>
+                    <p style="margin-top: 10px;">With your GitHub token:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'endpointToken')">Copy</button>
+                        <code id="endpointToken">https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN</code>
                     </div>
                 </div>
             </div>
 
             <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #30363d; font-size: 12px; color: #8b949e;">
-                After setup, ask your AI to "analyze the repository at [GitHub URL]" and you're done.
+                After setup, ask your AI: <em>"Analyze the repo at https://github.com/user/repo"</em> — no further action needed.
             </p>
         </div>
     </div>
