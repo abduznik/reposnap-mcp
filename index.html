@@ -506,13 +506,27 @@
             <span class="modal-close" onclick="closeConfigModal()">&times;</span>
             <h2>Setup Instructions</h2>
 
-            <p style="font-size: 12px; color: #8b949e; margin-bottom: 20px;">
-                Choose your client below. The basic config uses a shared GitHub token (60 req/hr). Add your own token for 5000 req/hr — generate one free at
-                <a href="https://github.com/settings/tokens/new?description=reposnap-mcp&scopes=" target="_blank">github.com/settings/tokens</a>
-                (no permissions needed for public repos).
+            <p style="font-size: 12px; color: #8b949e; margin-bottom: 12px;">
+                Choose your client below. The basic config uses a shared GitHub token (60 req/hr). Add your own token for 5000 req/hr — no permissions needed for public repos.
             </p>
+            <a href="https://github.com/settings/tokens/new?description=reposnap-mcp&scopes=" target="_blank" class="button primary" style="display: inline-block; margin-bottom: 20px; font-size: 12px; padding: 7px 14px;">Get a GitHub Token (free)</a>
 
             <div class="setup-options">
+                <!-- Other MCP Clients -->
+                <div class="setup-card">
+                    <h3>Other MCP Clients</h3>
+                    <p>Use the endpoint URL directly in your client's MCP configuration:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'endpoint')">Copy</button>
+                        <code id="endpoint">https://reposnap-mcp.bacholate.workers.dev/mcp</code>
+                    </div>
+                    <p style="margin-top: 10px;">With your GitHub token (5000 req/hr) — <a href="https://github.com/settings/tokens/new?description=reposnap-mcp&scopes=" target="_blank">get a token</a>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'endpointToken')">Copy</button>
+                        <code id="endpointToken">https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN</code>
+                    </div>
+                </div>
+
                 <!-- Claude Desktop -->
                 <div class="setup-card">
                     <h3>Claude Desktop</h3>
@@ -631,21 +645,6 @@
                         <code id="claudeaiToken">https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN</code>
                     </div>
                     <p style="margin-top: 8px; font-size: 11px; color: #6e7681;">Requires a Claude.ai Pro or Team plan for custom connectors.</p>
-                </div>
-
-                <!-- Other -->
-                <div class="setup-card">
-                    <h3>Other MCP Clients</h3>
-                    <p>Use the endpoint URL directly in your client's MCP configuration:</p>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(event, 'endpoint')">Copy</button>
-                        <code id="endpoint">https://reposnap-mcp.bacholate.workers.dev/mcp</code>
-                    </div>
-                    <p style="margin-top: 10px;">With your GitHub token:</p>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(event, 'endpointToken')">Copy</button>
-                        <code id="endpointToken">https://reposnap-mcp.bacholate.workers.dev/mcp?token=YOUR_GITHUB_TOKEN</code>
-                    </div>
                 </div>
             </div>
 
