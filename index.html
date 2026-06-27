@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reposnap-mcp — Ingest GitHub repos into AI context</title>
+    <title>reposnap-mcp — GitHub Repo Ingestion for Claude &amp; Cursor</title>
+    <meta name="description" content="reposnap-mcp: Load any public GitHub repository into Claude, Cursor, or Windsurf instantly via MCP. One-line config, no auth needed, free and open source.">
+    <meta name="keywords" content="MCP server, GitHub, Claude, Cursor, Windsurf, codebase, AI context, Model Context Protocol, ingest repository">
+    <meta property="og:title" content="reposnap-mcp — GitHub Repo Ingestion for Claude &amp; Cursor">
+    <meta property="og:description" content="MCP server that loads any public GitHub repo into your AI's context in seconds. Works with Claude Desktop, Cursor, Windsurf, and any MCP client.">
+    <meta property="og:url" content="https://abduznik.github.io/reposnap-mcp/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="reposnap-mcp — GitHub Repo Ingestion for Claude &amp; Cursor">
+    <meta name="twitter:description" content="MCP server: load any public GitHub repo into Claude mid-conversation. One config line, no auth, free.">
+    <link rel="canonical" href="https://abduznik.github.io/reposnap-mcp/">
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -180,6 +190,53 @@
 
         .section-text strong {
             color: #f0f6fc;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .comparison-col {
+            padding: 16px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            background-color: #161b22;
+        }
+
+        .comparison-col h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .comparison-col ul {
+            list-style: none;
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        .comparison-col ul li {
+            padding: 4px 0;
+        }
+
+        .comparison-col ul li::before {
+            content: "— ";
+            color: #6e7681;
+        }
+
+        .comparison-col.highlight {
+            border-color: #238636;
+        }
+
+        .comparison-col.highlight h3 {
+            color: #3fb950;
         }
 
         /* Use Cases */
@@ -405,6 +462,10 @@
             .use-cases {
                 grid-template-columns: 1fr;
             }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -413,8 +474,8 @@
     <div class="hero">
         <div class="container">
             <h1>reposnap-mcp</h1>
-            <p class="tagline">Ingest any GitHub repository into your AI context.</p>
-            <p class="description">Stop copying and pasting code. Load entire repositories into Claude, Cursor, Windsurf, or any MCP-compatible AI assistant instantly.</p>
+            <p class="tagline">Load any public GitHub repository into Claude, Cursor, or Windsurf — instantly, via MCP.</p>
+            <p class="description">Stop copying and pasting code. This Model Context Protocol server lets Claude, Cursor, and Windsurf fetch and analyze entire GitHub repositories on demand — no manual steps after setup.</p>
 
             <div class="button-group">
                 <a href="https://github.com/abduznik/reposnap-mcp" class="button primary">View on GitHub</a>
@@ -480,6 +541,23 @@
                     </div>
                 </div>
 
+                <!-- Windsurf -->
+                <div class="setup-card">
+                    <h3>Windsurf</h3>
+                    <p>Add this to <code>~/.codeium/windsurf/mcp_config.json</code>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(event, 'windsurfConfig')">Copy</button>
+                        <code id="windsurfConfig">{
+  "mcpServers": {
+    "reposnap": {
+      "type": "url",
+      "url": "https://reposnap-mcp.bacholate.workers.dev/mcp"
+    }
+  }
+}</code>
+                    </div>
+                </div>
+
                 <!-- Generic MCP Client -->
                 <div class="setup-card">
                     <h3>Other MCP Clients</h3>
@@ -492,13 +570,41 @@
             </div>
 
             <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #30363d; font-size: 12px; color: #8b949e;">
-                After setup, ask your AI to "ingest the repository at [GitHub URL]" and you're done.
+                After setup, ask your AI to "analyze the repository at [GitHub URL]" and you're done.
             </p>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
+        <!-- Why MCP vs gitingest -->
+        <div class="section">
+            <h2>Why MCP vs. gitingest?</h2>
+            <p style="color: #8b949e; font-size: 14px; margin-bottom: 20px;">Tools like gitingest are useful — but they require manual intervention every time. reposnap-mcp is different.</p>
+            <div class="comparison">
+                <div class="comparison-col">
+                    <h3>gitingest / similar tools</h3>
+                    <ul>
+                        <li>Visit website or CLI each time</li>
+                        <li>Generate a text blob manually</li>
+                        <li>Copy and paste into your AI chat</li>
+                        <li>One-time snapshot — stale immediately</li>
+                        <li>User-initiated every single time</li>
+                    </ul>
+                </div>
+                <div class="comparison-col highlight">
+                    <h3>reposnap-mcp</h3>
+                    <ul>
+                        <li>Configure once, works forever</li>
+                        <li>AI calls it automatically mid-conversation</li>
+                        <li>No copy-paste, no manual step</li>
+                        <li>Fetches live from GitHub every time</li>
+                        <li>Zero user action after initial setup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- How It Works -->
         <div class="section">
             <h2>How it works</h2>
@@ -507,7 +613,7 @@
                     <p><strong>Configure once.</strong> Point your MCP client to reposnap-mcp. Takes under a minute.</p>
                     <p><strong>Call ingest_repo.</strong> Pass any public GitHub URL. No authentication needed.</p>
                     <p><strong>Get full context.</strong> File tree, all source code, and configuration files are injected into your AI's context instantly.</p>
-                    <p>Perfect for understanding unfamiliar projects, refactoring large codebases, generating documentation, code review, and debugging.</p>
+                    <p>This Model Context Protocol server is called directly by the AI — Claude, Cursor, or Windsurf decides when to fetch the repo based on your request. You describe the task; the AI handles the rest.</p>
                 </div>
                 <div>
                     <div class="use-cases">
@@ -562,7 +668,7 @@
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top: 16px; padding: 12px; background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; font-size: 12px; color: #8b949e;"><strong style="color: #f0f6fc;">Output:</strong> Complete file tree and source code as plain text.</p>
+            <p style="margin-top: 16px; padding: 12px; background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; font-size: 12px; color: #8b949e;"><strong style="color: #f0f6fc;">Output:</strong> Complete file tree and source code as plain text. 100KB per-file cap, 500KB total output cap.</p>
         </div>
 
         <!-- FAQ -->
@@ -573,8 +679,11 @@
                     <p><strong>Is it free?</strong> Yes. Open source (MIT) and the endpoint is free.</p>
                     <p><strong>Do I need an account?</strong> No account needed, but you are subject to GitHub's rate limits.</p>
                     <p><strong>Rate limits?</strong> 60 requests per hour, per IP address (unauthenticated). Self-host with your own GitHub token for higher limits. See <a href="https://docs.github.com/en/rest/rate-limit" target="_blank">GitHub's rate limit docs</a> for current limits.</p>
-                    <p><strong>Private repos?</strong> Public repos only. Requires a GitHub Personal Access Token to work with private repos — possible future self-hosting feature.</p>
-                    <p><strong>Self-host?</strong> Yes. Full source on GitHub, including worker code.</p>
+                    <p><strong>Private repos?</strong> Public repos only on the hosted endpoint. Self-host with a PAT that has <code>repo</code> scope to access private repositories.</p>
+                    <p><strong>How is this different from gitingest or similar tools?</strong> gitingest requires you to manually generate and paste a text blob each time. reposnap-mcp is a Model Context Protocol server — the AI calls it directly during your conversation. Configure once; it works automatically from then on.</p>
+                    <p><strong>Does this work with Cursor?</strong> Yes. Add the same JSON config to <code>.cursor/mcp.json</code> and restart Cursor.</p>
+                    <p><strong>Can I use this on Claude.ai?</strong> Yes. Go to Claude.ai Settings → Connectors and add the endpoint URL as a custom connector.</p>
+                    <p><strong>Self-host?</strong> Yes. Full source on GitHub, including Docker and Node.js support.</p>
                     <p><strong>Privacy?</strong> We don't store data. Repos are fetched on-demand from GitHub.</p>
                 </div>
                 <div style="padding: 20px; background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; text-align: center;">
@@ -588,7 +697,7 @@
     <!-- Footer -->
     <div class="footer">
         <p>Built by <a href="https://github.com/abduznik">abduznik</a> | <a href="https://github.com/abduznik/reposnap-mcp">GitHub</a> | <a href="https://github.com/sponsors/abduznik">Support</a></p>
-        <p>MIT Licensed. Open source.</p>
+        <p>MIT Licensed. Open source. Model Context Protocol server for GitHub repository ingestion.</p>
     </div>
 
     <script>

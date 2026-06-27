@@ -1,0 +1,13 @@
+{
+  "name": "reposnap-mcp",
+  "version": "1.0.0",
+  "description": "MCP server to load any public GitHub repository into Claude, Cursor, or Windsurf AI context",
+  "keywords": ["mcp", "model-context-protocol", "github", "claude", "cursor", "windsurf", "ai", "llm", "developer-tools"],
+  "homepage": "https://abduznik.github.io/reposnap-mcp/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abduznik/reposnap-mcp"
+  },
+  "license": "MIT",
+  "author": "abduznik"
+}

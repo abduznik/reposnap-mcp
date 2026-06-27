@@ -1,0 +1,23 @@
+name: reposnap-mcp
+description: Load any public GitHub repository into Claude, Cursor, or Windsurf via MCP. Ingest the full file tree and source code into your AI's context in one tool call.
+version: "1.0.0"
+homepage: https://abduznik.github.io/reposnap-mcp/
+license: MIT
+categories:
+  - developer-tools
+  - code-analysis
+  - github
+transport:
+  type: http
+  url: https://reposnap-mcp.bacholate.workers.dev/mcp
+tools:
+  - name: ingest_repo
+    description: Fetch and concatenate the source files of a public GitHub repository into a single text blob. Returns the complete file tree and source code, ready for analysis, refactoring, documentation, or code review.
+startCommand:
+  type: node
+  configSchema:
+    type: object
+    properties:
+      GITHUB_TOKEN:
+        type: string
+        description: "Optional: GitHub Personal Access Token for higher rate limits (5000/hr vs 60/hr shared). Generate at https://github.com/settings/tokens — no permissions needed for public repos."
