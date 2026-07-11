@@ -141,6 +141,24 @@ export PORT=3000                            # Optional, defaults to 3000
 node server.js
 ```
 
+### Running Tests
+
+Run the integration tests using:
+
+```bash
+node test.js
+```
+
+The integration test suite automatically starts and stops the server and verifies:
+
+- Server startup and shutdown
+- Health endpoint (`GET /`)
+- MCP initialization
+- Tool listing
+- Unknown method handling
+- Invalid JSON handling
+- Unknown route handling
+
 ### Environment Variables
 
 | Variable | Required | Default | Description |
