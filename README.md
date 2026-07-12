@@ -1,3 +1,9 @@
+## Support This Project
+
+> **All projects made with passion** 💙
+
+[![Sponsor me](https://img.shields.io/badge/❤️%20Sponsor-GitHub-red?style=for-the-badge)](https://github.com/sponsors/abduznik)  
+
 &lt;!-- GitHub Topics to add manually: mcp, model-context-protocol, github, claude, cursor, windsurf, ai-tools, llm, developer-tools --&gt;
 
 # reposnap-mcp — Load Any GitHub Repo into Claude (or Cursor, Windsurf)
