@@ -1,0 +1,43 @@
+name: Sync wiki folder to GitHub Wiki
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wiki/**"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Clone wiki repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki-repo
+
+      - name: Sync wiki contents
+        run: |
+          cd wiki-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Remove old wiki content (keep .git)
+          find . -maxdepth 1 ! -name '.git' ! -name '.' -exec rm -rf {} +
+
+          # Copy new wiki content from repo
+          cp -r ../wiki/* .
+
+          # Only commit and push if there are changes
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "Sync wiki from main repo"
+            git push
+            echo "Wiki updated successfully."
+          else
+            echo "No changes to wiki. Skipping push."
+          fi
