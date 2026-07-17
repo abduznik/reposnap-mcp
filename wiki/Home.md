@@ -1,5 +1,6 @@
 # Welcome to the reposnap-mcp Wiki
 
-Check out the [Getting Started](Getting-Started) guide.
+Welcome! This wiki contains quick-start documentation for getting up and running with **reposnap-mcp**.
 
-See the [README](https://github.com/abduznik/reposnap-mcp#readme) for full documentation.
+- 📘 Start with the [Getting Started](Getting-Started) guide.
+- 📖 For advanced configuration, self-hosting, and API details, see the [README](https://github.com/abduznik/reposnap-mcp#readme).
